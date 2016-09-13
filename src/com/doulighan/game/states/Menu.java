@@ -14,7 +14,6 @@ import java.io.IOException;
  * TODO - Create SpriteSheet-to-text Class
  * TODO - Background rendering
  * TODO - Menu text and Selector cleanup
- * dunno
  */
 
 public class Menu extends GameState {
