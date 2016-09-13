@@ -43,9 +43,9 @@ public class Level1 extends GameState {
     player = new Player(this, 40, 40);
     enemy = new Enemy(this, 40, 40);
 
-    bg = new Background("/bg_stars1.png", .08, .08);
-    bg2 = new Background("/bg_stars2.png", .10, .10);
-    loadTiles("/testLevel.png");
+    bg = new Background("/Backgrounds/bg_stars1.png", .08, .08);
+    bg2 = new Background("/Backgrounds/bg_stars2.png", .10, .10);
+    loadTiles("/Maps/testLevel.png");
 
     this.addEntity(enemy);
     this.addEntity(player);

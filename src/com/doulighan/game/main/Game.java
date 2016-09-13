@@ -58,6 +58,7 @@ public class Game extends Canvas implements Runnable, KeyListener, FocusListener
   }
   public synchronized void start() {
     running = true;
+    System.out.print("blublublub\n");
     addKeyListener(this);
     addFocusListener(this);
     Thread thread = new Thread(this);

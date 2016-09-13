@@ -70,8 +70,6 @@ public class Screen {
   }
   public static Screen screen = new Screen(Game.WIDTH, Game.HEIGHT, SpriteSheet.sheet);
 
-  public SpriteSheet getSpriteSheet() { return this.sheet; }
-
   public void setOffset(int x, int y) {
     this.xOffset = x;
     this.yOffset = y;
