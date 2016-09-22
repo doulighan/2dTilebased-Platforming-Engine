@@ -58,7 +58,7 @@ public class Game extends Canvas implements Runnable, KeyListener, FocusListener
   }
   public synchronized void start() {
     running = true;
-    System.out.print("blublublub\n");
+    System.out.print("Running...\n");
     addKeyListener(this);
     addFocusListener(this);
     Thread thread = new Thread(this);
@@ -85,7 +85,7 @@ public class Game extends Canvas implements Runnable, KeyListener, FocusListener
 
     while (running) {
 
-      while (!focused) {
+      while (! focused) {
         try {
           Thread.sleep(100);
         } catch (InterruptedException e) {
@@ -116,13 +116,13 @@ public class Game extends Canvas implements Runnable, KeyListener, FocusListener
       }
     }
   }
+  public void init() {
+    gsm = new GSM(this);
+  }
   private void tick() {
     tickCount++;
     gsm.tick();
     Keys.tick();
-  }
-  public void init() {
-    gsm = new GSM(this);
   }
   public void render() {
     BufferStrategy bs = getBufferStrategy();
@@ -138,33 +138,31 @@ public class Game extends Canvas implements Runnable, KeyListener, FocusListener
       }
     }
 
+
     Graphics g = bs.getDrawGraphics();
     g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-
-    if (debug) {
-      g.setColor(Color.WHITE);
-      String data = ticksPS + " ticks, " + framesPS + " frames";
-      g.drawString(data, 5, 15);
-      data = "X: " + gsm.peekState().getPlayerX() + " Y: " + gsm.peekState().getPlayerY();
-      g.drawString(data, 5, 30);
-      data = "Col: " + gsm.peekState().getPlayerCol() + " Row: " + gsm.peekState().getPlayerRow();
-      g.drawString(data, 5, 45);
-      data = "Seconds elapsed: " + secondsElapsed;
-      g.drawString(data, 5, 60);
-      data = "Falling: " + gsm.peekState().getPlayerFalling();
-      g.drawString(data, 5, 75);
-    }
+    g.setColor(Color.WHITE);
+    String data = ticksPS + " ticks, " + framesPS + " frames";
+    g.drawString(data, 5, 15);
+    data = "X: " + gsm.peekState().getPlayerX() + " Y: " + gsm.peekState().getPlayerY();
+    g.drawString(data, 5, 30);
+    data = "Col: " + gsm.peekState().getPlayerCol() + " Row: " + gsm.peekState().getPlayerRow();
+    g.drawString(data, 5, 45);
+    data = "Seconds elapsed: " + secondsElapsed;
+    g.drawString(data, 5, 60);
+    data = "Falling: " + gsm.peekState().getPlayerFalling();
+    g.drawString(data, 5, 75);
 
     g.dispose();
     bs.show();
+  }
+  public void keyTyped(KeyEvent e) {
   }
   public void keyPressed(KeyEvent e) {
     Keys.keySet(e.getKeyCode(), true);
   }
   public void keyReleased(KeyEvent e) {
     Keys.keySet(e.getKeyCode(), false);
-  }
-  public void keyTyped(KeyEvent e) {
   }
   @Override
   public void focusGained(FocusEvent e) {
